@@ -1,0 +1,55 @@
+<ion-view view-title="signup">
+    <ion-content>
+
+        <form ng-submit="signup()">
+            <div class="list">
+
+
+
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">First Name</span>
+                    <input type="text" placeholder="first name" required ng-model="userObject.firstName">
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="last name" ng-model="userObject.lastName">
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Company Name</span>
+                    <input type="text" placeholder="company name" ng-model="userObject.companyName">
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Email</span>
+                    <input type="email" placeholder="email" required ng-model="userObject.email">
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="password" required ng-model="userObject.password">
+                </label>
+
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Re-Type Password</span>
+                    <input type="password" required placeholder="re-type password" required pattern="{{userObject.password}}">
+                </label>
+
+
+                <button class="button button-full button-balanced" type="submit">signup</button>
+
+
+            </div>
+        </form>
+
+
+        <div align="center">
+            or  <a href="#" ui-sref="login">login</a> if you already have an account
+        </div>
+
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,27 @@
+<!--cache-view = false means this page will not added as a part of ionic -->
+<ion-view view-title="" cache-view="false" >
+    <ion-content>
+
+        <form ng-submit="doLogin()">
+            <div class="list">
+
+                <label class="item item-input">
+                    <input type="email" placeholder="username or email" ng-model="loginObject.email">
+                </label>
+                <label class="item item-input">
+                    <input type="password" placeholder="password" ng-model="loginObject.password">
+                </label>
+                <button class="button button-full button-balanced" type="submit">Login</button>
+
+
+            </div>
+        </form>
+
+
+        <div align="center">
+            or <a href="#" ui-sref="signup">signup</a> if this is your first time
+        </div>
+
+
+    </ion-content>
+</ion-view>
