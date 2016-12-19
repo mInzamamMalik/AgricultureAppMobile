@@ -59,7 +59,7 @@ angular.module('starter', ['ionic', 'signup', 'login','dashboard','addZameen'])
         var vm = this;
 
 
-        vm.url = "http://salesman-app.herokuapp.com";
+        vm.url = "https://salesman-app.herokuapp.com";
 
         //////////////////////////////////////////////////////////////////////////////////////
         this.showLoading = function (text) {
