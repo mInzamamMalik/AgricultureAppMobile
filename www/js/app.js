@@ -51,7 +51,7 @@ angular.module('starter', ['ionic', 'signup', 'login','dashboard','addZameen'])
         //     url: "/adminDashboard/salemansInMaps",
         //     templateUrl: "views/salemansInMaps/salemansInMaps.html",
         //     controller: "salemansInMapsController"
-        // })  
+        // }); 
 
         $urlRouterProvider.otherwise("/login");
     })
