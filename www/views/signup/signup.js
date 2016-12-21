@@ -25,12 +25,11 @@
                     url: unversalFunctionsService.url + "/v1/signup",
                     data: {
                         // this values are required by api if any one is missing there will be problem
-                        email: $scope.userObject.email,
-                        password: $scope.userObject.password,
                         firstName: $scope.userObject.firstName,
                         lastName: $scope.userObject.lastName,
-                        companyName: $scope.userObject.companyName
-
+                        phone: $scope.userObject.phone,
+                        email: $scope.userObject.email,
+                        password: $scope.userObject.password
                     }
                 }).then(
                     function (response) { //this function execute on signup response
@@ -38,7 +37,7 @@
                         unversalFunctionsService.hideLoading();//hide loading as signup response is arrived
 
 
-                        if (response.data.signup) { //on signup success
+                        if (response.data.success) { //on signup success
                             unversalFunctionsService.showAlert("Congratulation !!","signed up successfully, please login to continue...");
                             $state.go("login");//route page to login on successful signup
 

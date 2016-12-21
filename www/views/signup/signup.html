@@ -1,11 +1,8 @@
-<ion-view view-title="signup">
+<ion-view view-title="Create Account">
     <ion-content>
 
         <form ng-submit="signup()">
             <div class="list">
-
-
-
 
                 <label class="item item-input item-floating-label">
                     <span class="input-label">First Name</span>
@@ -37,9 +34,7 @@
                     <input type="password" required placeholder="re-type password" required pattern="{{userObject.password}}">
                 </label>
 
-
                 <button class="button button-full button-balanced" type="submit">signup</button>
-
 
             </div>
         </form>
@@ -49,7 +44,5 @@
             or  <a href="#" ui-sref="login">login</a> if you already have an account
         </div>
 
-
     </ion-content>
-
 </ion-view>
