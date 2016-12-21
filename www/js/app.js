@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'signup', 'login', 'dashboard', 'addZameen'])
-    .controller("appController", ['$scope', appController])
+    .controller("appController", ['$scope', 'unversalFunctionsService', appController])
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -120,7 +120,8 @@ angular.module('starter', ['ionic', 'signup', 'login', 'dashboard', 'addZameen']
             if (currentView != "home" && currentView != "login" && currentView != "signup") {
 
                 vm.showAlert("Login First", "it look like you are not logged in or your session is expired");
-                localStorage.setItem("token", "");//if token is garbage or expired it is removing
+                localStorage.setItem("email", "");//if token is garbage or expired it is removing
+                localStorage.setItem("password", "");//if token is garbage or expired it is removing
                 $ionicHistory.nextViewOptions({
                     disableBack: true,
                     historyRoot: true
@@ -130,25 +131,35 @@ angular.module('starter', ['ionic', 'signup', 'login', 'dashboard', 'addZameen']
         };
         //////////////////////////////////////////////////////////////////////////////////////
         this.loggedIn = function () {
-            if ($ionicHistory.currentStateName() != "adminDashboard") {
-                $state.go("adminDashboard");
+            if ($ionicHistory.currentStateName() != "dashboard") {
+                $ionicHistory.nextViewOptions({
+                    disableBack: true,
+                    historyRoot: true
+                });
+                $state.go("dashboard");
             }
         };
 
         //////////////////////////////////////////////////////////////////////////////////
         this.isLoggedIn = function () { //recommend:this function will only call on load of login-page-controller, not admindashboard
 
-            if (localStorage.getItem("token")) {
+            if (localStorage.getItem("email")) {
 
                 console.log("checking isLoggedIn...");
 
-                $http.get("/v1/isLoggedIn").then(function (res) {
+                $http({///////////send login request to server with login information in body
+                    method: "post",
+                    url: vm.url + "/v1/login",
+                    data: {
+                        email: localStorage.getItem("email"),
+                        password: localStorage.getItem("password")
+                    }
 
-                    console.log("isLoggedIn response", res);
-                    if (res.data.isLoggedIn) { // it means user is loged in
+                }).then(function (response) {
+
+                    if (response.data.success) {
+                        console.log(response.data);
                         vm.loggedIn();
-                    } else {
-                        vm.notLoggedIn();
                     }
                 });
             }
@@ -158,7 +169,7 @@ angular.module('starter', ['ionic', 'signup', 'login', 'dashboard', 'addZameen']
 
     })//service ended
 
-function appController($scope) {
+function appController($scope, unversalFunctionsService) {
 
 }
 
