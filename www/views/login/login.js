@@ -37,9 +37,9 @@
 
                 if (response.data.success) {
                     console.log(response.data);
-                    localStorage.setItem("email", response.data.email);
+                    localStorage.setItem("email", response.data.data.email);
                     localStorage.setItem("password", $scope.loginObject.password);
-                    localStorage.setItem("password", response.data._id);
+                    localStorage.setItem("_id", response.data.data._id);
 
                     unversalFunctionsService.hideLoading();
 

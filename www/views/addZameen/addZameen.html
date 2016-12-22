@@ -1,15 +1,15 @@
 <ion-view view-title="Salesman Signup">
     <ion-content>
 
-        <form name="myForm" ng-submit="salesmanSignup()">
+        <form name="myForm" ng-submit="addZameen()">
             <div class="list">
-                <label name="firstName" class="item item-input item-icon-right item-floating-label">
+                <label name="title" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
                     <span class="input-label">Zameen Title</span>
                     <input type="text" placeholder="Zameen Title" required ng-model="newZameenObject.title">
                 </label>
 
-                <label name="lastName" class="item item-input item-icon-right item-floating-label">
+                <label name="location" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
                     <span class="input-label">Zameen location</span>
                     <input type="text" placeholder="Zameen location" ng-model="newZameenObject.location">

@@ -5,10 +5,10 @@
 
     angular.module("dashboard", [])
 
-        .controller("dashboardController", ['$scope', '$http','$ionicModal', 'unversalFunctionsService', dashboardController]);
+        .controller("dashboardController", ['$scope', '$http', '$ionicModal', 'unversalFunctionsService', dashboardController]);
 
 
-    function dashboardController($scope, $http,$ionicModal, unversalFunctionsService, NgMap) {
+    function dashboardController($scope, $http, $ionicModal, unversalFunctionsService, NgMap) {
 
         //unversalFunctionsService.isLoggedIn();
         $scope.photoUrl = localStorage.getItem("photoUrl");
@@ -25,28 +25,8 @@
 
             $http.get(unversalFunctionsService.url + "/v1/admin/getCompanyProfile").then(
                 function (response) {
-
                     console.log("profile: ", response);
                     $scope.profileObject = response.data;
-
-                    //on response
-                    ////////connect to firebase/////////////////////////////////////////
-                    ref = new Firebase("https://sales-man-app.firebaseio.com/").child(response.data.firebaseUid).child("notificationCount");
-
-                    ref.on("value", function (snapshot) {
-
-                        $scope.profileObject.notificationCount = snapshot.val();
-
-                        console.log("firebase response", $scope.profileObject.notificationCount);
-                        if($scope.profileObject.notificationCount != 0) {
-                            $scope.getOrderList();//get order list as salesman call one time itself
-                        }
-                        $scope.$apply();
-
-                    });
-                    ////////connect to firebase/////////////////////////////////////////
-
-
                 },
                 function (error) {
                     console.log("error getting profile: ", error);
@@ -57,26 +37,36 @@
 
                 }
             );
-        }(); // this function will call it self once on controller load
+        } (); // this function will call it self once on controller load
 
-        $scope.getSalesmanList = function () {
-            $http.get(unversalFunctionsService.url + "/v1/admin/getSalesmanList").then(
-                function (response) {
 
-                    console.log("salesman list: ", response.data);
-                    $scope.salesmansList = response.data;
 
-                },
-                function (error) {
-                    console.log("error getting salesman list: ", error);
 
-                    if (error.status == 401) {
-                        //unversalFunctionsService.notLoggedIn();
-                    }
 
+        $scope.getZameenList = function () {
+            $http({
+                method: "post",
+                url: unversalFunctionsService.url + "/v1/allZameen",
+                data: {
+                    landLord: "585aaef9daec500004c98b6b"
                 }
-            );
-        }(); // this function will call it self once on controller load
+            }).then(function (response) {
+
+                console.log("zameen list: ", response.data.data);
+                $scope.zameenList = response.data.data;
+
+            }, function (error) {
+                console.log("error getting zameen list: ", error);
+                if (error.status == 401) {
+                    //unversalFunctionsService.notLoggedIn();
+                }
+            });
+        }
+
+        $scope.$on('$ionicView.enter', function () {
+            $scope.getZameenList(); // this function will call it self once on controller load
+        });
+
 
 
         //////////////get order list as salesman/////////////////////////////////////
@@ -111,19 +101,19 @@
 
         $scope.deleteOrders = function (arrayOfOrderId) {
 
-            unversalFunctionsService.showConfirm("do you want to delete","",function(){//this function will exe if user click ok
+            unversalFunctionsService.showConfirm("do you want to delete", "", function () {//this function will exe if user click ok
 
                 unversalFunctionsService.showLoading("deleting...");
 
-                $http.post(unversalFunctionsService.url + "/v1/admin/deleteOrders", {arrayOfOrderId: arrayOfOrderId}).then(
+                $http.post(unversalFunctionsService.url + "/v1/admin/deleteOrders", { arrayOfOrderId: arrayOfOrderId }).then(
                     function (response) {
 
                         unversalFunctionsService.hideLoading();
 
-                        if(response.data.deleted){
+                        if (response.data.deleted) {
                             $scope.getOrderList();
-                        }else{
-                            unversalFunctionsService.showAlert("Deleting Error","check logs for more detail")
+                        } else {
+                            unversalFunctionsService.showAlert("Deleting Error", "check logs for more detail")
                         }
 
                     },
@@ -135,7 +125,7 @@
                             //unversalFunctionsService.notLoggedIn();
                         }
                     });
-            },function(){//this function will exe if user click cancel
+            }, function () {//this function will exe if user click cancel
 
 
             });
@@ -143,8 +133,8 @@
         };//deleteOrders ended here
 
 
-        $scope.makeAnOrderRead = function(order){
-            if(order.unRead ){
+        $scope.makeAnOrderRead = function (order) {
+            if (order.unRead) {
                 order.unRead = false;
 
                 $http.post("/v1/admin/makeAnOrderRead", order);
@@ -155,16 +145,16 @@
 
 
 
-        $scope.showOrderDetails = function(order){
+        $scope.showOrderDetails = function (order) {
             $scope.makeAnOrderRead(order);
-            if($scope.profileObject.notificationCount){
+            if ($scope.profileObject.notificationCount) {
                 ref.set(0);
             }
 
             $scope.modal.show();
 
         }
-        $scope.closeModal = function(order){
+        $scope.closeModal = function (order) {
 
             $scope.modal.hide();
 
@@ -173,7 +163,7 @@
         $ionicModal.fromTemplateUrl('./views/dashboard/modal-views/showOrderDetails.html', {
             scope: $scope,
             animation: 'slide-in-up'
-        }).then(function(modal) {
+        }).then(function (modal) {
             $scope.modal = modal;
         });
 
