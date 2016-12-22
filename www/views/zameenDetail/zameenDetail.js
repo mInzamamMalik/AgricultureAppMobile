@@ -3,25 +3,19 @@
  */
 (function () {// a self calling function in which adminDashboard module and controller are written
 
-    angular.module("dashboard", [])
+    angular.module("zameenDetail", [])
 
-        .controller("dashboardController", ['$scope', '$http', '$state', '$ionicModal', 'unversalFunctionsService', dashboardController]);
+        .controller("zameenDetailController", ['$scope', '$http', '$ionicModal', 'unversalFunctionsService', zameenDetailController]);
 
 
-    function dashboardController($scope, $http, $state, $ionicModal, unversalFunctionsService, NgMap) {
+    function zameenDetailController($scope, $http, $ionicModal, unversalFunctionsService, NgMap) {
 
         //unversalFunctionsService.isLoggedIn();
         $scope.photoUrl = localStorage.getItem("photoUrl");
 
         $scope.logout = unversalFunctionsService.clearCredentials;
 
-
-        $scope.token = localStorage.getItem("token");
-        $scope.uid = localStorage.getItem("uid");
-        $scope.email = localStorage.getItem("email");
-
-
-        $scope.getCompanyProfile = function () {
+        $scope.getZameenDetail = function () {
 
             $http.get(unversalFunctionsService.url + "/v1/admin/getCompanyProfile").then(
                 function (response) {
@@ -39,34 +33,7 @@
             );
         } (); // this function will call it self once on controller load
 
-
-
-
-
-        $scope.getZameenList = function () {
-            $http({
-                method: "post",
-                url: unversalFunctionsService.url + "/v1/allZameen",
-                data: {
-                    landLord: "585aaef9daec500004c98b6b"
-                }
-            }).then(function (response) {
-
-                console.log("zameen list: ", response.data.data);
-                $scope.zameenList = response.data.data;
-
-            }, function (error) {
-                console.log("error getting zameen list: ", error);
-                if (error.status == 401) {
-                    //unversalFunctionsService.notLoggedIn();
-                }
-            });
-        }
-
-        $scope.$on('$ionicView.enter', function () {
-            $scope.getZameenList(); // this function will call it self once on controller load
-        });
-
+      
 
 
         //////////////get order list as salesman/////////////////////////////////////
@@ -115,6 +82,7 @@
                         } else {
                             unversalFunctionsService.showAlert("Deleting Error", "check logs for more detail")
                         }
+
                     },
                     function (error) {
                         unversalFunctionsService.hideLoading();
@@ -126,15 +94,20 @@
                     });
             }, function () {//this function will exe if user click cancel
 
+
             });
+
         };//deleteOrders ended here
 
 
         $scope.makeAnOrderRead = function (order) {
             if (order.unRead) {
                 order.unRead = false;
+
                 $http.post("/v1/admin/makeAnOrderRead", order);
             }
+
+
         };
 
 
@@ -144,10 +117,14 @@
             if ($scope.profileObject.notificationCount) {
                 ref.set(0);
             }
+
             $scope.modal.show();
+
         }
         $scope.closeModal = function (order) {
+
             $scope.modal.hide();
+
         }
 
         $ionicModal.fromTemplateUrl('./views/dashboard/modal-views/showOrderDetails.html', {
@@ -157,9 +134,6 @@
             $scope.modal = modal;
         });
 
-        $scope.showZameenDetails = function (zameenObject) {
-            $state.go("zameenDetail", { _id: zameenObject._id }, { reload: true });
-        }
 
         $scope.name = "dfghdfg";
         //

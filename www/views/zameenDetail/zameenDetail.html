@@ -1,11 +1,5 @@
-<ion-view view-title="Dashboard" hide-back-button="true">
-
-
-    <ion-nav-buttons side="primary">
-        <button class="button" ng-click="logout()">
-            logout
-        </button>
-    </ion-nav-buttons>
+<ion-view view-title="Zameen Detail" hide-back-button="false">
+   
 
     <ion-nav-buttons side="secondary">
         <button class="button button-balanced" ui-sref="addZameen">
@@ -19,20 +13,19 @@
         <div class="list card">
 
             <div class="item item-avatar">
-                <img ng-src={{photoUrl}}>
 
-                <h2 ng-bind="profileObject.companyName">Zameendar name</h2>
+                <h2 ng-bind="profileObject.companyName">Zameen title</h2>
 
-                <p ng-bind="profileObject.email">email</p>
+                <p ng-bind="profileObject.email">Zameen location</p>
 
-                <p ng-show="profileObject.createdOn">Joined: {{profileObject.createdOn | date}}</p>
+                <p ng-show="profileObject.createdOn">Added: {{profileObject.createdOn | date}}</p>
             </div>
-
+            <div class="item item-image">
+                <img src="img/khet.jpg">
+            </div>
             <div class="item item-body">
                 <!--<img class="full-image" src="./img/delorean.jpg">-->
-                <p>
-                    This is an agriculture app
-                </p>
+                <p> </p>
             </div>
         </div>
         <!--md-card end-->
@@ -44,7 +37,7 @@
 
         <ion-list class="list">
             <div class="item item-divider" id="#zameenList">
-                Zameen List
+                Zameen Events
 
                 <!--<span class="item-note ">-->
                 <!--Mark all read-->
@@ -68,7 +61,7 @@
                     <p>{{zameen.location}}</p>
 
                     <p>{{zameen.createdOn | date}} </p>
-                    
+
                 </div>
                 <div class="buttons">
 

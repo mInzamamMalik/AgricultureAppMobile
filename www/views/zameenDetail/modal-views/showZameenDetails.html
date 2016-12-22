@@ -1,0 +1,29 @@
+<ion-modal-view>
+
+    <ion-header-bar align-title="left" class="bar-positive">
+        <div class="buttons">
+            <button class="button button-clear" ng-click="closeModal()">
+                <i class="icon ion-ios-arrow-back"></i>
+                back
+            </button>
+        </div>
+
+        <h1 class="title">Order Detail</h1>
+
+        <!--<div class="buttons">
+            <button class="button button-balanced">Submit</button>
+        </div>-->
+    </ion-header-bar>
+
+
+    <ion-content>
+
+        <ng-map zoom="13" center="{{24.815276599999997}},{{67.05424339999999}}">
+
+            <marker position="{{24.815276599999997}},{{67.05424339999999}}"></marker>
+            <marker position="{{24.815276599999997}},{{67}}" ></marker>
+
+        </ng-map>
+
+    </ion-content>
+</ion-modal-view>
