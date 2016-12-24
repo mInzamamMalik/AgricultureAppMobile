@@ -26,10 +26,31 @@
                     <span class="input-label">Event Cost</span>
                     <input type="number" placeholder="Event Cost" ng-model="newEventObject.eventCost">
                 </label>
-                
+
                 <button class="button button-full button-balanced" type="submit">add Event</button>
 
             </div>
         </form>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="item item-divider" id="#eventList"> in case of low Balance:</div>
+
+        <form name="myForm1" ng-submit="addBalance()">
+            <div class="list">
+
+                <label name="balance" class="item item-input item-icon-right item-floating-label">
+                    <i class="icon ion-asterisk required assertive"></i>
+                    <span class="input-label">Balance in rupees</span>
+                    <input type="number" placeholder="Balance in rupees" ng-model="balance">
+                </label>
+                <button class="button button-full button-balanced" type="submit">Add Balance</button>
+            </div>
+        </form>
+
+
+
     </ion-content>
 </ion-view>
