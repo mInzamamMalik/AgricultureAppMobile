@@ -1,22 +1,22 @@
 <ion-view view-title="Zameen Detail" hide-back-button="false">
-   
+
 
     <ion-nav-buttons side="secondary">
         <button class="button button-balanced" ui-sref="addZameen">
-            Add Zameen
+            Add Event
         </button>
     </ion-nav-buttons>
 
     <ion-content>
         <div class="list card">
 
-            <div class="item item-avatar">
+            <div class="item ">
 
-                <h2 ng-bind="profileObject.companyName">Zameen title</h2>
+                <h2 ng-bind="currentZameen.title"></h2>
+                <p ng-bind="currentZameen.location"></p>
 
-                <p ng-bind="profileObject.email">Zameen location</p>
-
-                <p ng-show="profileObject.createdOn">Added: {{profileObject.createdOn | date}}</p>
+                <p>Balance: {{currentZameen.accountBalance}} </p>
+                <p ng-show="currentZameen.createdOn">Added: {{currentZameen.createdOn | date}}</p>
             </div>
             <div class="item item-image">
                 <img src="img/khet.jpg">

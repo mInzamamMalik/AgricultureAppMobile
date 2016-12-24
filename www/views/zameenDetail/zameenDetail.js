@@ -11,15 +11,15 @@
     function zameenDetailController($scope, $http, $ionicModal, unversalFunctionsService, NgMap) {
 
         //unversalFunctionsService.isLoggedIn();
-        $scope.photoUrl = localStorage.getItem("photoUrl");
+        $scope.currentZameen = JSON.parse(localStorage.getItem("currentZameen"));
 
         $scope.logout = unversalFunctionsService.clearCredentials;
 
-        $scope.getZameenDetail = function () {
+        $scope.getZameenEvents = function () {
 
             $http.get(unversalFunctionsService.url + "/v1/admin/getCompanyProfile").then(
                 function (response) {
-                    console.log("profile: ", response);
+                    console.log("events: ", response.data);
                     $scope.profileObject = response.data;
                 },
                 function (error) {
@@ -28,13 +28,11 @@
                     if (error.status == 401) {
                         //unversalFunctionsService.notLoggedIn();
                     }
-
-                }
-            );
-        } (); // this function will call it self once on controller load
-
-      
-
+                });
+        }
+        $scope.$on('$ionicView.enter', function () {
+            $scope.getZameenEvents(); // this function will call it self once on controller load
+        });
 
         //////////////get order list as salesman/////////////////////////////////////
         $scope.getOrderList = function () {

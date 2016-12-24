@@ -160,10 +160,10 @@
         });
 
         $scope.showZameenDetails = function (zameenObject) {
-            $state.go("zameenDetail", { _id: zameenObject._id }, { reload: true });
+            $state.go("zameenDetail", {}, { reload: true });
+            localStorage.setItem("currentZameen", JSON.stringify(zameenObject));
         }
 
-        $scope.name = "dfghdfg";
         //
         //NgMap.getMap().then(function(map) {
         //    console.log(map.getCenter());
