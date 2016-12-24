@@ -4,11 +4,11 @@
         .controller("addEventController", function ($scope, $http, $state, unversalFunctionsService) {
 
             $scope.newEventObject = {};
-            $scope.currentZameen = JSON.parse(localStorage.getItem(currentZameen));
+            $scope.currentZameen = JSON.parse(localStorage.getItem("currentZameen"));
 
             $scope.addEvent = function () {// when user click on signup this function execute
 
-                unversalFunctionsService.showLoading("Signing up..."); // show loding until signup success or fail
+                unversalFunctionsService.showLoading("adding..."); // show loding until signup success or fail
 
                 $http({ // this line will send signup request to server with an object in request body
                     method: "post",
@@ -17,22 +17,20 @@
                         zameenId: $scope.currentZameen._id,
                         eventName: $scope.newEventObject.eventName,
                         eventDetail: $scope.newEventObject.eventDetail,
-                        expanse: $scope.newEventObject.expanse
+                        eventCost: $scope.newEventObject.eventCost
                     }
                 }).then(
                     function (response) { //this function execute on signup response
                         console.log("res: ", response.data);
                         unversalFunctionsService.hideLoading();//hide loading as signup response is arrived
 
-
-                        if (response.data.success) { //on signup success
-                            unversalFunctionsService.showAlert("Zameen added successfully", "view all zameen on dashboard");
+                        if (response.data.success) { //on success
+                            unversalFunctionsService.showAlert("Event added successfully");
                             $scope.newZameenObject = {};
 
-                        } else { //on signup fail
+                        } else { //on fail
                             unversalFunctionsService.showAlert("Adding zameen Failed !!", response.data.message);
                         }
-
                     },
                     function (error) {// this function execute when unable to send request
                         console.log("error: ", error);

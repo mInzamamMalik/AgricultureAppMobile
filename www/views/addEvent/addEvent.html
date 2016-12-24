@@ -1,36 +1,35 @@
 <ion-view view-title="Add Event">
     <ion-content>
 
-        <form name="myForm" ng-submit="addZameen()">
+        <form name="myForm" ng-submit="addEvent()">
             <div class="list">
+
+                <label class="item item-input item-select">
+                    <div class="input-label">
+                    Event Name
+                    </div>
+                    <select ng-model="newEventObject.eventName">
+                        <option>Hall Chalaya gya</option>
+                        <option selected="true">Spray kiya gya</option>
+                        <option>Pani lagaya gaya</option>
+                    </select>
+                </label>
+
                 <label name="eventDetail" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
                     <span class="input-label">Event Detail</span>
                     <input type="text" placeholder="Event Detail" required ng-model="newEventObject.eventDetail">
                 </label>
 
-                <label name="expanse" class="item item-input item-icon-right item-floating-label">
+                <label name="eventCost" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
-                    <span class="input-label">Event Expanse</span>
-                    <input type="text" placeholder="Event Expanse" ng-model="newEventObject.expanse">
+                    <span class="input-label">Event Cost</span>
+                    <input type="number" placeholder="Event Cost" ng-model="newEventObject.eventCost">
                 </label>
-
-                <!--<label name="compnayName" class="item item-input item-floating-label">-->
-                <!--<span class="input-label">Company Name</span>-->
-                <!--<input type="text" placeholder="company name" ng-model="newZameenObject.companyName">-->
-                <!--</label>-->
-
-                <!--<label name="email" class="item item-input item-icon-right item-floating-label">
-                    <i class="icon ion-asterisk required assertive"></i>
-                    <span class="input-label">Type</span>
-                    <input type="email" placeholder="email" required ng-model="newZameenObject.email">
-                </label>-->
-
-                <button class="button button-full button-balanced" type="submit">signup</button>
+                
+                <button class="button button-full button-balanced" type="submit">add Event</button>
 
             </div>
         </form>
-
     </ion-content>
-
 </ion-view>
