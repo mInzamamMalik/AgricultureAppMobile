@@ -4,7 +4,7 @@
         .controller("addEventController", function ($scope, $http, $state, unversalFunctionsService) {
 
             $scope.newEventObject = {};
-            $scope.balance = 0;
+            $scope.newBalanceObject = {};
             $scope.currentZameen = JSON.parse(localStorage.getItem("currentZameen"));
 
             $scope.addEvent = function () {// when user click on signup this function execute
@@ -49,7 +49,7 @@
                     url: unversalFunctionsService.url + "/v1/addBalance",
                     data: {
                         zameenId: $scope.currentZameen._id,
-                        balance: $scope.balance
+                        balance: $scope.newBalanceObject.balance
                     }
                 }).then(
                     function (response) { //this function execute on signup response
