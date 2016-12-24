@@ -1,18 +1,18 @@
-<ion-view view-title="Add Zameen">
+<ion-view view-title="Add Event">
     <ion-content>
 
         <form name="myForm" ng-submit="addZameen()">
             <div class="list">
-                <label name="title" class="item item-input item-icon-right item-floating-label">
+                <label name="eventDetail" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
-                    <span class="input-label">Zameen Title</span>
-                    <input type="text" placeholder="Zameen Title" required ng-model="newZameenObject.title">
+                    <span class="input-label">Event Detail</span>
+                    <input type="text" placeholder="Event Detail" required ng-model="newEventObject.eventDetail">
                 </label>
 
-                <label name="location" class="item item-input item-icon-right item-floating-label">
+                <label name="expanse" class="item item-input item-icon-right item-floating-label">
                     <i class="icon ion-asterisk required assertive"></i>
-                    <span class="input-label">Zameen location</span>
-                    <input type="text" placeholder="Zameen location" ng-model="newZameenObject.location">
+                    <span class="input-label">Event Expanse</span>
+                    <input type="text" placeholder="Event Expanse" ng-model="newEventObject.expanse">
                 </label>
 
                 <!--<label name="compnayName" class="item item-input item-floating-label">-->
