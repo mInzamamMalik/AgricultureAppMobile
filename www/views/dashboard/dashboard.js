@@ -50,7 +50,7 @@
                 method: "post",
                 url: unversalFunctionsService.url + "/v1/allZameen",
                 data: {
-                    landLord: "585aaef9daec500004c98b6b"
+                    landLord: $scope.user._id 
                 }
             }).then(function (response) {
 

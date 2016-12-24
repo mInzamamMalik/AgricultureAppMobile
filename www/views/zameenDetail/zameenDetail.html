@@ -29,7 +29,6 @@
         <!--md-card end-->
 
 
-        {{data}}
         <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
@@ -50,15 +49,15 @@
             </div>
 
             <div class="item item-button-right item-checkbox-right" ng-class="zameen.unRead == false  ? 'item item-button-right item-checkbox-right' : 'item item-button-right item-checkbox-right unread'"
-                ng-repeat="zameen in zameenList | orderBy: index:true ">
+                ng-repeat="event in eventList | orderBy: index:true ">
 
-                <div ng-click="showZameenDetails(zameen)">
+                <div ng-click="showEventDetails(event)">
 
-                    <h2>{{zameen.title}}</h2>
+                    <h2>{{event.name}}</h2>
 
-                    <p>{{zameen.location}}</p>
+                    <p>{{event.cost}}</p>
 
-                    <p>{{zameen.createdOn | date}} </p>
+                    <p>{{event.createdOn | date}} </p>
 
                 </div>
                 <div class="buttons">

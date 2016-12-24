@@ -17,17 +17,16 @@
 
         $scope.getZameenEvents = function () {
 
-            $http.get(unversalFunctionsService.url + "/v1/admin/getCompanyProfile").then(
+            $http.post(
+                unversalFunctionsService.url + "/v1/allEvents",
+                { zameenId: $scope.currentZameen._id }
+            ).then(
                 function (response) {
                     console.log("events: ", response.data);
-                    $scope.profileObject = response.data;
+                    $scope.eventList = response.data.data;
                 },
                 function (error) {
-                    console.log("error getting profile: ", error);
-
-                    if (error.status == 401) {
-                        //unversalFunctionsService.notLoggedIn();
-                    }
+                    console.log("error getting event list: ", error);                   
                 });
         }
         $scope.$on('$ionicView.enter', function () {
