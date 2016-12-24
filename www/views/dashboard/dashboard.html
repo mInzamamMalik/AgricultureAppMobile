@@ -15,17 +15,16 @@
 
     <ion-content>
 
-
         <div class="list card">
 
             <div class="item item-avatar">
                 <img ng-src={{photoUrl}}>
 
-                <h2 ng-bind="profileObject.companyName">Zameendar name</h2>
+                <h2 ng-bind="user.firstName +' '+ user.lastName">Zameendar name</h2>
 
-                <p ng-bind="profileObject.email">email</p>
+                <p ng-bind="user.email">email</p>
 
-                <p ng-show="profileObject.createdOn">Joined: {{profileObject.createdOn | date}}</p>
+                <p ng-show="user.createdOn">Joined: {{user.createdOn | date}}</p>
             </div>
 
             <div class="item item-body">
@@ -68,7 +67,7 @@
                     <p>{{zameen.location}}</p>
 
                     <p>{{zameen.createdOn | date}} </p>
-                    
+
                 </div>
                 <div class="buttons">
 

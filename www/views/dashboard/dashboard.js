@@ -10,8 +10,10 @@
 
     function dashboardController($scope, $http, $state, $ionicModal, unversalFunctionsService, NgMap) {
 
+
         //unversalFunctionsService.isLoggedIn();
         $scope.photoUrl = localStorage.getItem("photoUrl");
+        $scope.user = JSON.parse(localStorage.getItem("user"));
 
         $scope.logout = unversalFunctionsService.clearCredentials;
 

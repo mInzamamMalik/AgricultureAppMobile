@@ -5,10 +5,10 @@
 
     angular.module("login", [])
 
-        .controller("loginController", ['$scope', '$http', '$state', '$ionicHistory', 'unversalFunctionsService', loginController]);
+        .controller("loginController", ['$scope', '$rootScope', '$http', '$state', '$ionicHistory', 'unversalFunctionsService', loginController]);
 
 
-    function loginController($scope, $http, $state, $ionicHistory, unversalFunctionsService) {
+    function loginController($scope, $rootScope, $http, $state, $ionicHistory, unversalFunctionsService) {
 
         unversalFunctionsService.isLoggedIn();
 
@@ -40,6 +40,7 @@
                     localStorage.setItem("email", response.data.data.email);
                     localStorage.setItem("password", $scope.loginObject.password);
                     localStorage.setItem("_id", response.data.data._id);
+                    localStorage.setItem("user", JSON.stringify(response.data.data));
 
                     unversalFunctionsService.hideLoading();
 
